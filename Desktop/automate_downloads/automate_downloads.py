@@ -20,8 +20,8 @@ class MyHandler(FileSystemEventHandler):
                                     'folder_path':'C:/Users/Дмитрий/Downloads/text'},
                            'prezentation':{'extentions':['.pdf','.pptx'],
                                     'folder_path':'C:/Users/Дмитрий/Downloads/prezentation'},
-                           'books':{'extentions':['.epub','.fb2'],
-                                    'folder_path':'C:/Users/Дмитрий/Downloads/books'},
+                           'book':{'extentions':['.epub','.fb2'],
+                                    'folder_path':'C:/Users/Дмитрий/Downloads/book'},
                            'excel':{'extentions':['.xlsx'],
                                     'folder_path':'C:/Users/Дмитрий/Downloads/excel'}}
 
@@ -43,7 +43,11 @@ class MyHandler(FileSystemEventHandler):
                 folder_destination = MyHandler.get_folder_path(filename)
                 src = folder_to_track + "/" + filename
                 new_destination = folder_destination + "/" + filename
-                os.rename(src, new_destination)
+                try:
+                    os.rename(src, new_destination)
+                except Exception as e:
+                    print(e)
+
 
 folder_to_track = 'C:/Users/Дмитрий/Downloads'
 
